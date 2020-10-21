@@ -9,7 +9,7 @@ class Queue {
         this.items[this.count++] = item
     }
 
-    dequeue() { // 删除对头
+    dequeue() { // 删除队头
         if(this.isEmpty()) return undefined
         const result = this.items[this.lowestCount]
         delete this.items[this.lowestCount]
@@ -17,7 +17,7 @@ class Queue {
         return result
     }
 
-    peek() { // 返回对头
+    peek() { // 返回队头
         if(this.isEmpty()) return undefined
         return this.items[this.lowestCount]
     }
@@ -40,8 +40,18 @@ class Queue {
         if(this.isEmpty()) return ''
         let str = this.items[this.lowestCount]
         for(let i=this.lowestCount+1; i< this.count; i++) {
-            str += `${str},${this.items[i]}`
+            str += `,${this.items[i]}`
         }
         return str
     }
 }
+
+const queue = new Queue()
+queue.enqueue(1)
+queue.enqueue(2)
+queue.enqueue(3)
+console.log(queue.toString())
+console.log(queue.size())
+console.log(queue.peek())
+console.log(queue.dequeue())
+console.log(queue.size())

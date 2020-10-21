@@ -40,17 +40,18 @@ class Stack {
 
     toString() {
         if(this.isEmpty()) return undefined
-        let objStr = this.items[0] // for ,
-        for(let i=0;i<this.count;i++) {
-            objStr = `${objStr},${this.items[i]}`
+        let str = this.items[0]
+        for(let i=1;i<this.count;i++) {
+            str += `,${this.items[i]}`
         }
-        
+        return str
     }
 }
 
 const stack = new Stack()
 stack.push(5)
 stack.push(8)
+console.log(stack.toString())
 console.log(stack.size())
 console.log(stack.pop())
 console.log(stack.size())
