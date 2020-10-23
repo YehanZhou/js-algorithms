@@ -1,11 +1,4 @@
-class Node {
-    constructor(element) {
-        this.element = element
-        this.next = undefined
-    }
-}
-
-class LinkList {
+class LinkedList {
     constructor() {
         this.count = 0
         this.head = undefined
@@ -41,7 +34,6 @@ class LinkList {
     }
 
     insert(element, index) { // 向链表的特定位置插入一个新元素。
-        // debugger
         const node = new Node(element)
         if (index >= 0 && index <= this.count) {
             if (index === 0) {
@@ -96,6 +88,11 @@ class LinkList {
         return this.count
     }
 
+    clear() {
+        this.head = undefined
+        this.count = 0
+    }
+
     toString() { // 返回表示整个链表的字符串。由于列表项使用了Node类，就需要重写继承自JavaScript对象默认的toString方法，让其只输出元素的值。
         if(!this.head) return ''
         let str = this.head.element.toString()
@@ -108,15 +105,16 @@ class LinkList {
     }
 }
 
-const linkList = new LinkList()
-linkList.push(1)
-linkList.push(2)
-linkList.push(3)
-console.log(linkList.toString())
-console.log(linkList.getElementAt(1))
-console.log(linkList.insert(5,1))
-console.log(linkList.toString())
-console.log('removeAt(2)',linkList.removeAt(2))
-console.log(linkList.toString())
-linkList.remove(5)
-console.log(linkList.toString())
+const linkedList = new LinkedList()
+linkedList.push(1)
+linkedList.push(2)
+linkedList.push(3)
+console.log(linkedList.toString())
+console.log(linkedList.size())
+console.log(linkedList.getElementAt(2))
+console.log(linkedList.insert(5,1))
+console.log(linkedList.toString())
+console.log('removeAt(2)',linkedList.removeAt(2))
+console.log(linkedList.toString())
+linkedList.remove(5)
+console.log(linkedList.toString())
