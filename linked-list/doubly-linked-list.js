@@ -1,7 +1,7 @@
 
 class DoublyLinkedList extends LinkedList { // 双向链表，不用循环
-    constructor() {
-        super()
+    constructor(equalsFn) {
+        super(equalsFn)
         this.tail = undefined
     }
     push(element) {
@@ -18,7 +18,7 @@ class DoublyLinkedList extends LinkedList { // 双向链表，不用循环
     }
     insert(element, index) {
         if (index >=0 && index <= this.count) {
-            const node = new DoublyNode()
+            const node = new DoublyNode(element)
             if (index===0) {
                 if (!this.head) {
                     this.head = node
@@ -88,3 +88,14 @@ class DoublyLinkedList extends LinkedList { // 双向链表，不用循环
         this.tail = undefined
     }
 }
+
+// console.log('doubly-linked-list-----------')
+// const dlist = new DoublyLinkedList()
+// dlist.push(1)
+// dlist.push(2)
+// dlist.push(3)
+// console.log(dlist.toString())
+// dlist.insert(4,1)
+// console.log(dlist.toString())
+// dlist.removeAt(2)
+// console.log(dlist.toString())

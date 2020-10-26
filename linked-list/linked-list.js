@@ -1,7 +1,10 @@
+// import { defaultEquals } from '../util';
+
 class LinkedList {
-    constructor() {
+    constructor(equalsFn = defaultEquals) {
         this.count = 0
         this.head = undefined
+        this.equalsFn = equalsFn
     }
 
     push(element) { // 向链表尾部添加一个新元素。
@@ -53,7 +56,7 @@ class LinkedList {
     indexOf(element) { // 返回元素在链表中的索引。如果链表中没有该元素则返回-1。
         let current = this.head
         for (let i = 0; i < this.count; i++) {
-            if(element === current.element) return i
+            if(this.equalsFn(element, current.element)) return i
             current = current.next
         }
         return -1
@@ -94,10 +97,11 @@ class LinkedList {
     }
 
     toString() { // 返回表示整个链表的字符串。由于列表项使用了Node类，就需要重写继承自JavaScript对象默认的toString方法，让其只输出元素的值。
+        // debugger
         if(!this.head) return ''
         let str = this.head.element.toString()
         let current = this.head.next
-        while (current) {
+        for (let i = 1; i < this.count && current; i++) { // 为了兼容循环列表，所以用for，不用while(current)
             str += `,${current.element.toString()}`
             current = current.next
         }
@@ -105,16 +109,16 @@ class LinkedList {
     }
 }
 
-const linkedList = new LinkedList()
-linkedList.push(1)
-linkedList.push(2)
-linkedList.push(3)
-console.log(linkedList.toString())
-console.log(linkedList.size())
-console.log(linkedList.getElementAt(2))
-console.log(linkedList.insert(5,1))
-console.log(linkedList.toString())
-console.log('removeAt(2)',linkedList.removeAt(2))
-console.log(linkedList.toString())
-linkedList.remove(5)
-console.log(linkedList.toString())
+// const linkedList = new LinkedList()
+// linkedList.push(1)
+// linkedList.push(2)
+// linkedList.push(3)
+// console.log(linkedList.toString())
+// console.log(linkedList.size())
+// console.log(linkedList.getElementAt(2))
+// console.log(linkedList.insert(5,1))
+// console.log(linkedList.toString())
+// console.log('removeAt(2)',linkedList.removeAt(2))
+// console.log(linkedList.toString())
+// linkedList.remove(5)
+// console.log(linkedList.toString())

@@ -1,5 +1,8 @@
 
 class CircleLinkedList extends LinkedList {
+    constructor(equalsFn = defaultEquals) {
+        super(equalsFn)
+    }
     push(element) {
         const node = new Node(element)
         let current
@@ -62,3 +65,14 @@ class CircleLinkedList extends LinkedList {
         return undefined
     }
 }
+
+// console.log('circle-linked-list-----------')
+// const clist = new CircleLinkedList()
+// clist.push(1)
+// clist.push(2)
+// clist.push(3)
+// console.log(clist.toString())
+// clist.insert(4,1)
+// console.log(clist.toString())
+// clist.removeAt(2)
+// console.log(clist.toString())
