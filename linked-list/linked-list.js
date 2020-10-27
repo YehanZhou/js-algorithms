@@ -96,6 +96,10 @@ class LinkedList {
         this.count = 0
     }
 
+    getHead() {
+        return this.head
+    }
+
     toString() { // 返回表示整个链表的字符串。由于列表项使用了Node类，就需要重写继承自JavaScript对象默认的toString方法，让其只输出元素的值。
         // debugger
         if(!this.head) return ''
