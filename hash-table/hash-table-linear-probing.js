@@ -1,4 +1,4 @@
-class HashTable {
+class HashTableLinearProbing {
     constructor(toStrFn = defaultToString) {
         this.toStrFn = toStrFn;
         this.table = {};
@@ -23,8 +23,8 @@ class HashTable {
         return hash % 1013;
     }
     hashCode(key) {
-        // return this.loseloseHashCode(key);
-        return this.djb2HashCode(key);
+        return this.loseloseHashCode(key);
+        // return this.djb2HashCode(key);
     }
     put(key, value) {
         if(!key || !value) return false
@@ -61,7 +61,7 @@ class HashTable {
         const position = this.hashCode(key)
         if (this.table[position] != null) {
             if (this.table[position].key === key) {
-                delete this.table[position].value
+                delete this.table[position]
                 this.verifyRemoveSideEffect(key, position)
                 return true
             } else {
@@ -70,7 +70,7 @@ class HashTable {
                     index++
                 }
                 if(this.table[index] != null && this.table[index].key === key) {
-                    delete this.table[index].value
+                    delete this.table[index]
                     this.verifyRemoveSideEffect(key, index)
                     return true
                 }
@@ -95,10 +95,10 @@ class HashTable {
       return this.table;
     }
     isEmpty() {
-      return this.size() === 0;
+      return this.size() === 0
     }
     size() {
-      return Object.keys(this.table).length;
+        return Object.keys(this.table).length
     }
     clear() {
       this.table = {};
@@ -109,10 +109,13 @@ class HashTable {
     }
   }
   
-  const hashTable = new HashTable()
+  const hashTable = new HashTableLinearProbing()
   hashTable.put('aaa', 'aaa@aaa.com')
   hashTable.put('bbb', 'bbb@bbb.com')
+  hashTable.put('ccc', 'ccc@ccc.com')
+  console.log(hashTable.size())
   console.log(hashTable.toString())
   hashTable.remove('bbb')
+  console.log(hashTable.size())
   console.log(hashTable.toString())
   
