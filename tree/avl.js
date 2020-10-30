@@ -49,6 +49,22 @@ class AVLTree extends BinarySearchTree {
             return node
         }
         // todo
+        const balanceFactor = this.getBalanceFactor(node)
+        if (balanceFactor === 2) {
+            if (this.compareFn(key, node.left.key) === Compare.LESS_THAN) {
+                node = this.rotatoLL(node)
+            } else {
+                return this.rotatoLR(node)
+            }
+        }
+        if (balanceFactor === -2) {
+            if (this.compareFn(key, node.right.key) === Compare.BIGGER_THAN) {
+                node = this.rotatoRR(node)
+            } else {
+                return this.rotatoRL(node)
+            }
+        }
+        return node
     }
     removeNode(node, key) {
         node = super.removeNode(node, key)
@@ -85,9 +101,9 @@ class AVLTree extends BinarySearchTree {
 }
 
 const avl = new AVLTree()
-avl.insert(3)
 avl.insert(1)
 avl.insert(2)
+avl.insert(3)
 avl.insert(4)
 avl.insert(5)
 console.log(JSON.stringify(avl.getRoot()))
