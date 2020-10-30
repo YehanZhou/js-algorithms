@@ -2,7 +2,7 @@
 class BinarySearchTree {
     constructor(compareFn = defaultCompare) {
         this.compareFn = compareFn
-        this.root = undefined
+        this.root = null
     }
     insert(key) {
         if (this.root == null) {
@@ -35,9 +35,9 @@ class BinarySearchTree {
     searchNode(node, key) {
         if (node == null) return false
         if (this.compareFn(key, node.key) === Compare.LESS_THAN) {
-            this.insertNode(node.left, key)
+            this.searchNode(node.left, key)
         } else if (this.compareFn(key, node.key) === Compare.BIGGER_THAN) {
-            this.insertNode(node.right, key)
+            this.searchNode(node.right, key)
         }
         return true
     }
@@ -93,14 +93,16 @@ class BinarySearchTree {
         return current
     }
     remove(key) {
-        this.removeNode(this.root, key)
+        this.root = this.removeNode(this.root, key)
     }
     removeNode(node, key) {
-        if(node == null) return undefined
+        if(node == null) return node
         if(this.compareFn(key, node.key) === Compare.LESS_THAN) {
-            this.removeNode(node.left, key)
+            node.left = this.removeNode(node.left, key)
+            return node
         } else if (this.compareFn(key, node.key) === Compare.BIGGER_THAN) {
-            this.removeNode(node.right, key)
+            node.right = this.removeNode(node.right, key)
+            return node
         }
         // 等于的情况分三种
         // 1. 无子节点
@@ -109,11 +111,11 @@ class BinarySearchTree {
             return node
         }
         // 2.有一个子节点
-        if (node.left != null) {
-            node = node.left
-            return node
-        } else if (node.right != null) {
+        if (node.left == null) {
             node = node.right
+            return node
+        } else if (node.right == null) {
+            node = node.left
             return node
         }
         // 3.有两个子节点
@@ -122,3 +124,13 @@ class BinarySearchTree {
         return node
     }
 }
+
+const bst = new BinarySearchTree()
+bst.insert(3)
+bst.insert(1)
+bst.insert(2)
+bst.insert(4)
+bst.insert(5)
+console.log(JSON.stringify(bst.getRoot()))
+bst.remove(4)
+console.log(JSON.stringify(bst.getRoot()))
