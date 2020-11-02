@@ -40,6 +40,7 @@ class AVLTree extends BinarySearchTree {
         this.root = this.insertNode(this.root, key) // 更新为平衡树
     }
     insertNode(node, key) {
+        // debugger
         if (node == null) return new Node(key)
         if (this.compareFn(key, node.key) === Compare.LESS_THAN) {
             node.left = this.insertNode(node.left, key)
@@ -48,23 +49,24 @@ class AVLTree extends BinarySearchTree {
         } else {
             return node
         }
-        // todo
-        const balanceFactor = this.getBalanceFactor(node)
-        if (balanceFactor === 2) {
-            if (this.compareFn(key, node.left.key) === Compare.LESS_THAN) {
-                node = this.rotatoLL(node)
-            } else {
-                return this.rotatoLR(node)
-            }
-        }
-        if (balanceFactor === -2) {
-            if (this.compareFn(key, node.right.key) === Compare.BIGGER_THAN) {
-                node = this.rotatoRR(node)
-            } else {
-                return this.rotatoRL(node)
-            }
-        }
-        return node
+        // const balanceFactor = this.getBalanceFactor(node)
+        // if (balanceFactor === 2) {
+        //     if (this.compareFn(key, node.left.key) === Compare.LESS_THAN) {
+        //         return this.rotatoLL(node)
+        //     } else {
+        //         return this.rotatoLR(node)
+        //     }
+        // }
+        // if (balanceFactor === -2) {
+        //     if (this.compareFn(key, node.right.key) === Compare.BIGGER_THAN) {
+        //         return this.rotatoRR(node)
+        //     } else {
+        //         return this.rotatoRL(node)
+        //     }
+        // }
+        // return node
+
+        return this.balanceTree(node)
     }
     removeNode(node, key) {
         node = super.removeNode(node, key)
@@ -79,12 +81,6 @@ class AVLTree extends BinarySearchTree {
                 } else {
                     return this.rotatoLL(node)
                 }
-                break
-            case 1:
-                return this.rotatoLL(node)
-                break
-            case -1:
-                return this.rotatoRR(node)
                 break
             case -2:
                 if (this.getBalanceFactor(node.right) > 0) {
