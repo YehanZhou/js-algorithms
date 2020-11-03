@@ -79,4 +79,25 @@ class MinHeap {
             this.siftDown(element)
         }
     }
+
+    heapify(array) { // 数组堆化
+        if(array) {
+            this.heap = array
+        }
+        const maxIndex = Math.floor(this.size()/2) - 1
+        for (let i = 0; i < maxIndex; i++) {
+            this.siftDown(i)            
+        }
+    }
+
+    getAsArray() {
+        return this.heap
+    }
+}
+
+class MaxHeap extends MinHeap{
+    constructor(compareFn = defaultCompare) {
+        super(compareFn)
+        this.compareFn = reverseCompare(compareFn)
+    }
 }
