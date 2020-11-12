@@ -16,10 +16,6 @@ function dijkstra(graph, src) { // 贪心算法计算原顶点到其它顶点的
         const u = minDistance(dist, visited)
         visited[u] = true
     }
-
-
-
-
 }
 
 function minDistance(dist, visited) {

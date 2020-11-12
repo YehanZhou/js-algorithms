@@ -32,3 +32,9 @@ function findMaxVal(array) {
     }
     return max
 }
+
+/*
+最好情况： O(n+k)
+一般情况： O(n+k
+最坏情况： O(n+k)
+*/

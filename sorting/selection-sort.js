@@ -13,3 +13,9 @@ function selectionSort(array, compareFn = defaultCompare) {
     }
     return array
 }
+
+/*
+最好情况： O(n^2) 因为每次都要找最小值
+一般情况： O(n^2)
+最坏情况： O(n^2)
+*/

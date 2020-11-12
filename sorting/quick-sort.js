@@ -26,6 +26,7 @@ function part(array, left, right, compareFn) {
             j--
         }
     }
+    return i
 }
 
 function quickSort(array, compareFn = defaultCompare) {
@@ -38,4 +39,9 @@ function quickSort(array, compareFn = defaultCompare) {
     其中part计算的是区分数组的位置
     一份比轴心小，一份比轴心大
     分别递归计算两部分
+*/
+/*
+最好情况： O(nlog(n))
+一般情况： O(nlog(n))
+最坏情况： O(n^2)
 */

@@ -2,8 +2,8 @@ function mergeSort(array, compareFn = defaultCompare){
     const { length } = array
     if (length < 1) return
     let middle = Math.floor(length / 2)
-    const left = this.mergeSort(array.slice(0,middle), compareFn)
-    const right = this.mergeSort(array.slice(middle), compareFn)
+    const left = mergeSort(array.slice(0,middle), compareFn)
+    const right = mergeSort(array.slice(middle), compareFn)
     return merge(left, right, compareFn)
 }
 
@@ -20,3 +20,10 @@ function merge(left, right, compareFn) {
     }
     return result.concat(i < left.length ? left.slice(i) : right.slice(j))
 }
+
+/*
+最好情况： O(nlog(n))
+一般情况： O(nlog(n))
+最坏情况： O(nlog(n))
+*/
+

@@ -7,3 +7,4 @@ function sequeSearch(array, val, equalsFn = defaultEquals) {
     }
     return NOT_EXIT
 }
+// 最坏情况 O(n)

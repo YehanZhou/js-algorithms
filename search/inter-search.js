@@ -16,3 +16,4 @@ function interSearch(array, val, compareFn = defaultCompare) {
     }
     return -1
 }
+// 最坏情况 O(n)
